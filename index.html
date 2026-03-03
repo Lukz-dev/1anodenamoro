@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Ano de Namoro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/padrao.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a href="index.html"><img src="img/netflix.png" class="logo" alt="Netflix Logo"></a>
+        <ul class="nav-links">
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Nós</a></li>
+            <li><a href="#">Momentos</a></li>
+            <li><a href="#">Minha Lista</a></li>
+        </ul>
+
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <!-- imagem agora é um background através de CSS -->
+        <div class="hero-overlay">
+            <div class="buttons">
+                <button class="btn-play"><span class="play-icon">&#9658;</span>Assistir</button>
+                <button class="btn-info"><span class="info-icon">&#8505;</span>Mais informações</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="carousel-section">
+        <h2 class="section-title">Nós</h2>
+        <div class="carousel">
+            <div class="wrap">
+                <img src="img/1.png" alt="">
+                <img src="img/2.png" alt="">
+                <img src="img/3.png" alt="">
+                <img src="img/4.png" alt="">
+                <img src="img/5.png" alt="">
+                <img src="img/1.png" alt="">
+                <img src="img/2.png" alt="">
+                <img src="img/3.png" alt="">
+                <img src="img/4.png" alt="">
+                <img src="img/5.png" alt="">
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- video modal -->
+<div id="videoModal">
+    <div class="modal-content">
+        <button class="close-btn" aria-label="Fechar vídeo">×</button>
+        <video id="heroVideo" controls>
+            <source src="vid/0303.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<script>
+    const playButton = document.querySelector('.btn-play');
+    const modal = document.getElementById('videoModal');
+    const closeBtn = modal ? modal.querySelector('.close-btn') : null;
+    const video = document.getElementById('heroVideo');
+
+    function openModal() {
+        if (!modal) return;
+        modal.classList.add('active');
+        if (video) {
+            video.currentTime = 0;
+            video.play().catch(() => {});
+        }
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
+    }
+
+    if (playButton) {
+        playButton.addEventListener('click', openModal);
+    }
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
